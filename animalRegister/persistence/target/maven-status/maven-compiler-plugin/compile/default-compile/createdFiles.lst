@@ -1,0 +1,4 @@
+pl/tomek/persistence/AnimalEntity.class
+pl/tomek/persistence/AnimalRepository.class
+pl/tomek/persistence/AnimalRepositoryImpl.class
+pl/tomek/persistence/PersistenceImpl.class
