@@ -1,6 +1,10 @@
 package pl.tomek.persistence;
 
+import java.util.Optional;
+
 public interface AnimalRepository {
 
-    AnimalEntity save(AnimalEntity animalEntity);
+    void save(AnimalEntity animalEntity);
+
+    Optional<AnimalEntity> findById(Long id);
 }

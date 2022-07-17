@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Component
@@ -13,9 +14,13 @@ class AnimalRepositoryImpl implements AnimalRepository {
     private final List<AnimalEntity> data = new ArrayList<>();
 
     @Override
-    public AnimalEntity save(AnimalEntity animalEntity) {
+    public void save(AnimalEntity animalEntity) {
         animalEntity.setId(this.counter.incrementAndGet());
         this.data.add(animalEntity);
-        return animalEntity;
+    }
+
+    @Override
+    public Optional<AnimalEntity> findById(Long id) {
+        return this.data.stream().filter(animalEntity -> animalEntity.getId().equals(id)).findFirst();
     }
 }

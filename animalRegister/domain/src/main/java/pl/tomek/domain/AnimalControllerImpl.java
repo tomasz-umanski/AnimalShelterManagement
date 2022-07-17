@@ -1,8 +1,9 @@
 package pl.tomek.domain;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
+
+import java.util.Optional;
 
 @Component
 class AnimalControllerImpl implements AnimalController {
@@ -16,7 +17,11 @@ class AnimalControllerImpl implements AnimalController {
 
     @Override
     public Animal registerAnimal(Animal animal) {
-        animal = persistence.save(animal);
-        return animal;
+        return persistence.save(animal);
+    }
+
+    @Override
+    public Optional<Animal> findAnimalById(Long id) {
+        return persistence.findById(id);
     }
 }

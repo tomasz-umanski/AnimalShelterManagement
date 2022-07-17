@@ -5,6 +5,8 @@ import org.springframework.stereotype.Component;
 import pl.tomek.domain.Animal;
 import pl.tomek.domain.Persistence;
 
+import java.util.Optional;
+
 @Component
 class PersistenceImpl implements Persistence {
 
@@ -21,5 +23,16 @@ class PersistenceImpl implements Persistence {
         this.animalRepository.save(animalEntity);
         animal = AnimalEntity.toDomain(animalEntity);
         return animal;
+    }
+
+    @Override
+    public Optional<Animal> findById(Long id) {
+        Optional<AnimalEntity> optionalAnimalEntity = this.animalRepository.findById(id);
+        if(!optionalAnimalEntity.isPresent()) {
+            return Optional.empty();
+        }
+        AnimalEntity animalEntity = optionalAnimalEntity.get();
+        Animal animal = AnimalEntity.toDomain(animalEntity);
+        return Optional.of(animal);
     }
 }
