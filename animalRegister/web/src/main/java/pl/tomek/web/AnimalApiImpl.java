@@ -1,6 +1,7 @@
 package pl.tomek.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import pl.tomek.domain.Animal;
 import pl.tomek.domain.AnimalController;
@@ -25,8 +26,8 @@ class AnimalApiImpl implements AnimalApi {
     }
 
     @Override
-    public Optional<AnimalOutputDTO> getAnimalById(AnimalInputIdDTO animalInputIdDTO) {
-        Optional<Animal> optionalAnimal = animalController.findAnimalById(animalInputIdDTO.getId());
+    public Optional<AnimalOutputDTO> getAnimalById(Long id) {
+        Optional<Animal> optionalAnimal = animalController.findAnimalById(id);
         if(!optionalAnimal.isPresent()) {
             return Optional.empty();
         }
